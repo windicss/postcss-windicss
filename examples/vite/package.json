@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "cross-env DEBUG=postcss-windicss vite",
+    "build": "cross-env DEBUG=postcss-windicss vite build"
+  },
+  "devDependencies": {
+    "postcss": "^8.2.9",
+    "postcss-windicss": "workspace:*",
+    "vite": "^2.1.5"
+  }
+}

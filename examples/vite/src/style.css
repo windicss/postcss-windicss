@@ -1,0 +1,5 @@
+@windicss;
+
+.btn {
+  @apply rounded shadow dark:text-yellow-400 lg:text-red-400;
+}
