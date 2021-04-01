@@ -1,23 +1,28 @@
 import type { Plugin } from 'postcss'
 import { parse } from 'postcss'
 import { createUtils, WindiPluginUtilsOptions } from '@windicss/plugin-utils'
-import { startDevServer } from './dev'
-import { context, debug } from './context'
-
-export type { defineConfig } from 'windicss/helpers'
-
-const isDev = process.env.NODE_ENV === 'development'
+import { startDevWatcher } from './dev'
+import { context, debug, isDev } from './context'
 
 const plugin = (options: WindiPluginUtilsOptions = {}): Plugin => {
-  const utils = context.utils = createUtils(options, { name: 'postcss-windicss' })
+  if (!context.utils) {
+    context.utils = createUtils({
+      ...options,
+      onOptionsResolved() {
+        if (isDev)
+          setTimeout(() => startDevWatcher())
+      },
+    }, {
+      name: 'postcss-windicss',
+    })
 
-  if (isDev) {
-    debug('start dev server', options)
-    startDevServer()
+    if (isDev)
+      debug('development mode')
+    else
+      debug('production mode')
   }
-  else {
-    debug('production mode')
-  }
+
+  const utils = context.utils
 
   return {
     postcssPlugin: 'postcss-windicss',
@@ -40,6 +45,8 @@ const plugin = (options: WindiPluginUtilsOptions = {}): Plugin => {
     },
   }
 }
+
+export const postcss = true
 
 plugin.postcss = true
 

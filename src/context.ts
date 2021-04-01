@@ -10,4 +10,5 @@ export const context: Context = {
 
 }
 
+export const isDev = process.env.NODE_ENV === 'development'
 export const debug = _debug('postcss-windicss')

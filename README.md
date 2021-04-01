@@ -24,6 +24,17 @@ module.exports = {
 @windicss;
 ```
 
+```js
+// windi.config.js
+import { defineConfig } from 'windicss/helpers'
+
+export default defineConfig({
+  extract: {
+    include: ["scr/**/*.{html,vue,jsx,tsx,svelte}"]
+  }
+})
+```
+
 ## Sponsors
 
 <p align="center">

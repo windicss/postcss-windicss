@@ -2,6 +2,6 @@ import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
   shortcuts: {
-    foobar: 'ring ring-light-blue-400',
+    foobar: 'ring-1 ring-light-blue-400',
   },
 })
