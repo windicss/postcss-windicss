@@ -29,7 +29,7 @@
     "prepublishOnly": "npm run build",
     "dev": "npm run build -- --watch",
     "build": "tsup src/index.ts --format cjs --dts",
-    "release": "bumpp --commit --push --tag && npm publish",
+    "release": "bumpp --commit --push --tag",
     "lint": "eslint \"{src,test}/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest"
