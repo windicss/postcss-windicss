@@ -1,6 +1,6 @@
 {
   "name": "postcss-windicss",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "PostCSS plugin for Windi CSS",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
