@@ -2,7 +2,9 @@
 
 [![NPM version](https://img.shields.io/npm/v/postcss-windicss?color=a1b858&label=)](https://www.npmjs.com/package/postcss-windicss)
 
-> Expiremental.
+> 🧪 Expiremental.
+
+> ⚠️ Using this package is **discouraged** as there are some limitations of PostCSS's API. Use our [first-class integrations](https://next.windicss.org/guide/installation.html) for each dedicated framework/build tool to get the best develop experience and performance. This plugin should be your last option to use Windi CSS.
 
 ## Install
 
