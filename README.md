@@ -48,6 +48,34 @@ export default defineConfig({
 
 And enjoy!
 
+## Configuration
+
+You can pass options to the plugin by
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'postcss-windicss': {
+      config: 'path/to/windi.config.js' // by default it will try to find it in your project root
+    },
+  },
+}
+```
+
+The full configuration options can be found [here](https://github.com/windicss/vite-plugin-windicss/blob/main/packages/plugin-utils/src/options.ts)
+
+## Dev / Build modes
+
+`postcss-windicss` has two different mode, one for incremental dev serving and one for one-time production build. It's based on your `process.env.NODE_ENV` value.
+
+If the tool you use does not infer it to you, you can always set them explicitly by
+
+```bash
+cross-env NODE_ENV=production npm run build # production mode
+cross-env NODE_ENV=development npm run build # development mode
+```
+
 ## Progress
 
 ### Features
@@ -59,6 +87,7 @@ And enjoy!
 - [x] `@apply`
 - [ ] `@layer` `@screen` `@variant`
 - [ ] "Design in DevTools"
+- [ ] Variant Groups (probably not possible)
 
 ### Frameworks
 
