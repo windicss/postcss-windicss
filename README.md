@@ -93,7 +93,9 @@ cross-env NODE_ENV=development npm run build # development mode
 
 Currently tested on 
 
+- [ ] Snowpack (⚠️ Does not work with [@snowpack/plugin-postcss](https://www.npmjs.com/package/@snowpack/plugin-postcss))
 - [x] Vite
+- [x] Webpack
 
 Feel free to add more if you got it working on other tools/frameworks!
 
