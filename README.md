@@ -93,11 +93,13 @@ cross-env NODE_ENV=development npm run build # development mode
 
 Currently tested on 
 
-- [x] Snowpack
-- [x] Vite
-- [x] Webpack
+- [x] Snowpack\*
+- [x] Vite\*
+- [x] Webpack\*
 
 Feel free to add more if you got it working on other tools/frameworks!
+
+> \* WindiCSS as PostCSS integration is integrated **in** and checked **with** the [@leanup/stack](https://leanupjs.org).
 
 ## Sponsors
 
