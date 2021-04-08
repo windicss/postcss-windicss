@@ -3,3 +3,22 @@
 .btn {
   @apply rounded shadow dark:text-yellow-400 lg:text-red-400;
 }
+
+@variants focus, hover {
+  .rotate-0 {
+    transform: rotate(0deg);
+  }
+  .rotate-90 {
+    transform: rotate(90deg);
+  }
+}
+
+@screen sm {
+  .custom {
+    @apply text-lg;
+  }
+}
+
+.btn-blue {
+  background-color: theme("colors.blue.500");
+}

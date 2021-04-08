@@ -84,8 +84,8 @@ cross-env NODE_ENV=development npm run build # development mode
 - [x] Hot reload
 - [x] Inline class utilities 
 - [x] Load TypeScript / ESM configure
-- [x] `@apply`
-- [ ] `@layer` `@screen` `@variant`
+- [x] `@apply` `@screen` `@variants` `theme()`
+- [ ] `@layer` 
 - [ ] "Design in DevTools"
 - [ ] Variant Groups (probably not possible)
 

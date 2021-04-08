@@ -31,7 +31,8 @@ const plugin = (options: WindiPluginUtilsOptions = {}): Plugin => {
         context.entry = atRule.root().source?.input.from
         atRule.replaceWith(parse(await utils.generateCSS()))
       }
-      else if (['apply', 'screen'].includes(atRule.name)) {
+      // @apply
+      else if (['apply'].includes(atRule.name)) {
         const rule = atRule.parent!
         if (!rule)
           return
@@ -42,6 +43,20 @@ const plugin = (options: WindiPluginUtilsOptions = {}): Plugin => {
         if (transformed)
           rule.replaceWith(parse(transformed))
       }
+      // @screen, @variants
+      else if (['screen', 'variants'].includes(atRule.name)) {
+        await utils.ensureInit()
+        const css = atRule.toString()
+        const transformed = css ? utils.transformCSS(css) : undefined
+        if (transformed)
+          atRule.replaceWith(parse(transformed))
+      }
+    },
+    Declaration(decl) {
+      // theme()
+      const match = decl.value.match(/^\s*theme\((['"])(.*)\1\)\s*$/)
+      if (match && match[2])
+        decl.value = (utils.processor.theme(match[2]) as any).toString()
     },
   }
 }
