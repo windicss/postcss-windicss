@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 import chokidar, { FSWatcher } from 'chokidar'
+import exitHook from 'exit-hook'
 import { touch } from './utils'
 import { context, debug } from './context'
 
@@ -12,6 +13,7 @@ export function shutdownWatcher() {
     watcher = undefined
   }
 }
+exitHook(shutdownWatcher)
 
 export async function startDevWatcher() {
   shutdownWatcher()
