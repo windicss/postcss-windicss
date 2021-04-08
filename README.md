@@ -14,14 +14,27 @@ Install `postcss-windicss` from NPM
 npm i -D postcss-windicss
 ```
 
-Create `postcss.config.js` under your project root
+Create `postcss.config.js` under your project root.
 
 ```js
 // postcss.config.js
 module.exports = {
-  plugins: {
-    'postcss-windicss': { /* ... */ },
-  },
+  plugins: [
+    require( 'postcss-windicss')
+  ]
+}
+```
+
+Or with specific options:
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [
+    require( 'postcss-windicss')({
+      /* Options */ 
+    })
+  ]
 }
 ```
 
@@ -55,15 +68,26 @@ You can pass options to the plugin by
 ```js
 // postcss.config.js
 module.exports = {
-  plugins: {
-    'postcss-windicss': {
-      config: 'path/to/windi.config.js' // by default it will try to find it in your project root
-    },
-  },
+  plugins: [
+    require( 'postcss-windicss')({
+      config: 'path/to/windi.config.js', // by default it will try to find it in your project root
+      touchAs: 'Comment' // default is UTimes
+    })
+  ]
 }
 ```
 
 The full configuration options can be found [here](https://github.com/windicss/vite-plugin-windicss/blob/main/packages/plugin-utils/src/options.ts)
+
+### PostCSS specific Options
+
+#### TouchAs
+
+Default: `UTimes`
+
+Option values:
+- `Comment`: Insert a timestamp in the CSS file to trigger the regeneration.
+- `UTimes`: Update the Utime of the CSS file to trigger the regeneration.
 
 ## Dev / Build modes
 
