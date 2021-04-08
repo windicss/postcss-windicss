@@ -2,9 +2,9 @@
 
 [![NPM version](https://img.shields.io/npm/v/postcss-windicss?color=a1b858&label=)](https://www.npmjs.com/package/postcss-windicss)
 
-> 🧪 Expiremental.
+> 🧪 Experimental.
 
-> ⚠️ Using this package is **discouraged** as there are some limitations of PostCSS's API. Use our [first-class integrations](https://next.windicss.org/guide/installation.html) for each dedicated framework/build tool to get the best develop experience and performance. This plugin should be your last option to use Windi CSS.
+> ⚠️ Using this package is **discouraged** as there are some limitations of PostCSS's API. Use our [first-class integrations](https://next.windicss.org/guide/installation.html) for each dedicated framework/build tool to get the best developer experience and performance. This plugin should be your last option to use Windi CSS.
 
 ## Installation
 
@@ -32,7 +32,7 @@ Add `@windicss` to your main css entry:
 @windicss;
 ```
 
-Create `windi.config.js` / `windi.config.ts` under your project root with this configurations
+Create `windi.config.js` / `windi.config.ts` under your project root with the following configurations
 
 ```js
 // windi.config.js
@@ -67,7 +67,7 @@ The full configuration options can be found [here](https://github.com/windicss/v
 
 ## Dev / Build modes
 
-`postcss-windicss` has two different mode, one for incremental dev serving and one for one-time production build. It's based on your `process.env.NODE_ENV` value.
+`postcss-windicss` has two different modes, one for incremental dev serving and one for a one-time production build. It's based on your `process.env.NODE_ENV` value.
 
 If the tool you use does not infer it to you, you can always set them explicitly by
 
@@ -93,9 +93,9 @@ cross-env NODE_ENV=development npm run build # development mode
 
 Currently tested on 
 
-- [x] Snowpack
 - [x] Vite
 - [x] Webpack
+- [x] Snowpack
 
 Feel free to add more if you got it working on other tools/frameworks!
 
