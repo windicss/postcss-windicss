@@ -1,4 +1,4 @@
-import fs from 'fs'
+import { promises as fs } from 'fs'
 import chokidar, { FSWatcher } from 'chokidar'
 import { context, debug } from './context'
 
@@ -14,11 +14,11 @@ export function shutdownWatcher() {
 
 const TOUCH_STR = 'WindiCSS-Dev-Touch'
 const TOUCH_REG = new RegExp(`\\/\\* ${TOUCH_STR}: \\d+ \\*\\/\n*`)
-function touch(file: string) {
-  let css = fs.readFileSync(file, 'utf-8')
+async function touch(file: string) {
+  let css = await fs.readFile(file, 'utf-8')
   css = css.replace(TOUCH_REG, '')
   css = `/* ${TOUCH_STR}: ${Date.now()} */\n${css}`
-  fs.writeFileSync(file, css, 'utf-8')
+  await fs.writeFile(file, css, 'utf-8')
 }
 
 export async function startDevWatcher() {
@@ -46,11 +46,11 @@ export async function startDevWatcher() {
       }
 
       debug('update from', path)
-      await utils!.extractFile(fs.readFileSync(path, 'utf-8'))
+      await utils!.extractFile(await fs.readFile(path, 'utf-8'))
       if (context.entry)
-        touch(context.entry)
+        await touch(context.entry)
     })
 
   if (context.entry)
-    touch(context.entry)
+    await touch(context.entry)
 }
