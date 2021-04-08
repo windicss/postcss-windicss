@@ -13,9 +13,10 @@ export function shutdownWatcher() {
     watcher = undefined
   }
 }
+exitHook(shutdownWatcher)
 
 export async function startDevWatcher() {
-  exitHook(shutdownWatcher)
+  shutdownWatcher()
 
   debug('starting dev watcher')
   const utils = context.utils!
