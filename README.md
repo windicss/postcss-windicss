@@ -68,26 +68,15 @@ You can pass options to the plugin by
 ```js
 // postcss.config.js
 module.exports = {
-  plugins: [
-    require( 'postcss-windicss')({
+  plugins: {
+    'postcss-windicss': {
       config: 'path/to/windi.config.js', // by default it will try to find it in your project root
-      touchAs: 'Comment' // default is UTimes
-    })
-  ]
+    }
+  }
 }
 ```
 
 The full configuration options can be found [here](https://github.com/windicss/vite-plugin-windicss/blob/main/packages/plugin-utils/src/options.ts)
-
-### PostCSS specific Options
-
-#### TouchAs
-
-Default: `UTimes`
-
-Option values:
-- `Comment`: Insert a timestamp in the CSS file to trigger the regeneration.
-- `UTimes`: Update the Utime of the CSS file to trigger the regeneration.
 
 ## Dev / Build modes
 
@@ -98,6 +87,23 @@ If the tool you use does not infer it to you, you can always set them explicitly
 ```bash
 cross-env NODE_ENV=production npm run build # production mode
 cross-env NODE_ENV=development npm run build # development mode
+```
+
+## Touch Mode
+
+By default, this plugin "touches" your css entry by updating the file's "updated time" (utime) to trigger the hot reload without changing its content.
+
+It should work most of the time. But for some tools, they might also compare the file's content to avoid unnecessary hot reloads. In that cases, you will need to specify `touchMode` to `insert-comment` to get proper style updates with those tools.
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'postcss-windicss': {
+      touchMode: 'insert-comment' // <--
+    }
+  }
+}
 ```
 
 ## Progress

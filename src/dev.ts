@@ -20,6 +20,10 @@ export async function startDevWatcher(options: WindiPostCSSPluginOptions) {
   const utils = context.utils!
   await utils.ensureInit()
 
+  const {
+    touchMode = 'utime',
+  } = options
+
   watcher = chokidar
     .watch(utils.options.scanOptions.include, {
       ignored: utils.options.scanOptions.exclude,
@@ -40,9 +44,9 @@ export async function startDevWatcher(options: WindiPostCSSPluginOptions) {
       debug('update from', path)
       await utils!.extractFile(await fs.readFile(path, 'utf-8'))
       if (context.entry)
-        await touch(context.entry, options.touchAs)
+        await touch(context.entry, touchMode)
     })
 
   if (context.entry)
-    await touch(context.entry, options.touchAs)
+    await touch(context.entry, touchMode)
 }

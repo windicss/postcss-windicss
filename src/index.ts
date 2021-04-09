@@ -2,11 +2,9 @@ import type { Plugin } from 'postcss'
 import { parse } from 'postcss'
 import { createUtils } from '@windicss/plugin-utils'
 import { startDevWatcher } from './dev'
-import { context, debug, isDev, TouchAsMode, WindiPostCSSPluginOptions } from './context'
+import { context, debug, isDev, WindiPostCSSPluginOptions } from './context'
 
-const plugin = (options: WindiPostCSSPluginOptions = {
-  touchAs: TouchAsMode.UTimes,
-}): Plugin => {
+const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
   if (!context.utils) {
     context.utils = createUtils({
       ...options,
