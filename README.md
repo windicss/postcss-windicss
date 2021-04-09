@@ -19,22 +19,11 @@ Create `postcss.config.js` under your project root.
 ```js
 // postcss.config.js
 module.exports = {
-  plugins: [
-    require( 'postcss-windicss')
-  ]
-}
-```
-
-Or with specific options:
-
-```js
-// postcss.config.js
-module.exports = {
-  plugins: [
-    require( 'postcss-windicss')({
-      /* Options */ 
-    })
-  ]
+  plugins: {
+    'postcss-windicss': {
+      /* Options */
+    },
+  },
 }
 ```
 
