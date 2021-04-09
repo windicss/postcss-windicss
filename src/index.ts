@@ -1,16 +1,16 @@
 import type { Plugin } from 'postcss'
 import { parse } from 'postcss'
-import { createUtils, WindiPluginUtilsOptions } from '@windicss/plugin-utils'
+import { createUtils } from '@windicss/plugin-utils'
 import { startDevWatcher } from './dev'
-import { context, debug, isDev } from './context'
+import { context, debug, isDev, WindiPostCSSPluginOptions } from './context'
 
-const plugin = (options: WindiPluginUtilsOptions = {}): Plugin => {
+const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
   if (!context.utils) {
     context.utils = createUtils({
       ...options,
       onOptionsResolved() {
         if (isDev)
-          setTimeout(() => startDevWatcher())
+          setTimeout(() => startDevWatcher(options))
       },
     }, {
       name: 'postcss-windicss',

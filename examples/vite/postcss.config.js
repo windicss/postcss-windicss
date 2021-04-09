@@ -1,5 +1,7 @@
 module.exports = {
   plugins: {
-    'postcss-windicss': {},
+    'postcss-windicss': {
+      // touchMode: 'insert-comment',
+    },
   },
 }
