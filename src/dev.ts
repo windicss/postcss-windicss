@@ -1,6 +1,5 @@
 import { promises as fs } from 'fs'
 import chokidar, { FSWatcher } from 'chokidar'
-import exitHook from 'exit-hook'
 import { touch } from './utils'
 import { context, debug, WindiPostCSSPluginOptions } from './context'
 
@@ -13,7 +12,6 @@ export function shutdownWatcher() {
     watcher = undefined
   }
 }
-exitHook(shutdownWatcher)
 
 export async function startDevWatcher(options: WindiPostCSSPluginOptions) {
   shutdownWatcher()
@@ -46,9 +44,9 @@ export async function startDevWatcher(options: WindiPostCSSPluginOptions) {
       debug('update from', path)
       await utils!.extractFile(await fs.readFile(path, 'utf-8'))
       if (context.entry)
-        await touch(context.entry, touchMode)
+        touch(context.entry, touchMode)
     })
 
   if (context.entry)
-    await touch(context.entry, touchMode)
+    touch(context.entry, touchMode)
 }

@@ -1,7 +1,8 @@
-import type { Plugin } from 'postcss'
+import exitHook from 'exit-hook'
 import { parse } from 'postcss'
 import { createUtils } from '@windicss/plugin-utils'
-import { startDevWatcher } from './dev'
+import type { Plugin } from 'postcss'
+import { shutdownWatcher, startDevWatcher } from './dev'
 import { context, debug, isDev, WindiPostCSSPluginOptions } from './context'
 
 const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
@@ -17,9 +18,9 @@ const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
     })
 
     if (isDev)
-      debug('development mode')
-    else
-      debug('production mode')
+      exitHook(shutdownWatcher)
+
+    debug(isDev ? 'development mode' : 'production mode')
   }
 
   const utils = context.utils
