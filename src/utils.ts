@@ -1,10 +1,25 @@
-import { promises as fs, utimes, open, close } from 'fs'
+import { close, open, promises as fs, utimes } from 'fs'
+
+async function fileExists(path: string) {
+  try {
+    const stats = await fs.stat(path)
+    return stats.isFile()
+  }
+  catch (e) {
+    return false
+  }
+}
 
 export async function touch(path: string, mode: 'utime' | 'insert-comment' = 'utime') {
-  if (mode === 'utime')
-    return await touchUtime(path)
-  else
-    return await touchInsert(path)
+  path = path.replace(/.[^.]+$/, '.');
+  ['css', 'less', 'sass', 'scss'].forEach(async(ext) => {
+    if (await fileExists(path + ext)) {
+      if (mode === 'utime')
+        return await touchUtime(path + ext)
+      else
+        return await touchInsert(path + ext)
+    }
+  })
 }
 
 const TOUCH_REG = /\/\*\s*windicss-touch:.*\*\//
