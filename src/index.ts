@@ -28,8 +28,9 @@ const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
   return {
     postcssPlugin: 'postcss-windicss',
     async AtRule(atRule) {
+      const entry = atRule.root().source?.input.from
       if (atRule.name === 'windicss') {
-        context.entry = atRule.root().source?.input.from
+        context.entry = entry
         atRule.replaceWith(parse(await utils.generateCSS()))
       }
       // @apply
@@ -40,7 +41,7 @@ const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
 
         await utils.ensureInit()
         const css = rule.toString()
-        const transformed = css ? utils.transformCSS(css) : undefined
+        const transformed = css ? utils.transformCSS(css, entry || '') : undefined
         if (transformed)
           rule.replaceWith(parse(transformed))
       }
@@ -48,7 +49,7 @@ const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
       else if (['screen', 'variants'].includes(atRule.name)) {
         await utils.ensureInit()
         const css = atRule.toString()
-        const transformed = css ? utils.transformCSS(css) : undefined
+        const transformed = css ? utils.transformCSS(css, entry || '') : undefined
         if (transformed)
           atRule.replaceWith(parse(transformed))
       }
