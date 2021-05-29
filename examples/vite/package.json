@@ -4,8 +4,9 @@
     "build": "cross-env DEBUG=postcss-windicss vite build"
   },
   "devDependencies": {
-    "postcss": "^8.2.9",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.3.0",
     "postcss-windicss": "workspace:*",
-    "vite": "^2.1.5"
+    "vite": "^2.3.4"
   }
 }

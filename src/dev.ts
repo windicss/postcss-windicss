@@ -13,7 +13,7 @@ export function shutdownWatcher() {
   }
 }
 
-export async function startDevWatcher(options: WindiPostCSSPluginOptions) {
+export async function startDevWatcher(options: WindiPostCSSPluginOptions = {}) {
   shutdownWatcher()
 
   debug('starting dev watcher')
@@ -35,6 +35,8 @@ export async function startDevWatcher(options: WindiPostCSSPluginOptions) {
 
   watcher
     .on('change', async(path) => {
+      if (path === context.entry)
+        return
       if (path === utils.configFilePath) {
         debug('reload config', utils.configFilePath)
         utils.init()
