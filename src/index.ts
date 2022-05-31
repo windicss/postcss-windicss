@@ -54,11 +54,13 @@ const plugin = (options: WindiPostCSSPluginOptions): Plugin => {
           atRule.replaceWith(parse(transformed))
       }
     },
-    Declaration(decl) {
+    async Declaration(decl) {
       // theme()
       const match = decl.value.match(/^\s*theme\((['"])(.*)\1\)\s*$/)
-      if (match && match[2])
+      if (match && match[2]) {
+        await utils.ensureInit()
         decl.value = (utils.processor.theme(match[2]) as any).toString()
+      }
     },
   }
 }
